@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestAll">
+
+    <test name="Demo test">
+        <classes>
+            <class name="com.redkix.automation.tests.DT1_DemoTest" />
+        </classes>
+    </test>
+</suite>
