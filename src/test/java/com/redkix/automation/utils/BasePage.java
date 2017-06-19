@@ -73,4 +73,12 @@ public class BasePage {
     protected WebElement waitForOneOfElementPresent(By locator1, By locator2){
         return wait.forOneOfElementPresent(locator1, locator2);
     }
+
+    protected void threadSleep(int miliseconds){
+        try {
+            Thread.sleep(miliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

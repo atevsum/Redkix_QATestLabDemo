@@ -44,6 +44,7 @@ public class InboxPage extends BasePage {
     }
 
     public InboxPage clickMarkRead(){
+        threadSleep(500);
         clickByActions(inboxMessages.get(indexOfLastMessage));
         return this;
     }

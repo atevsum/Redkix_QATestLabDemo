@@ -47,7 +47,7 @@ public class WaitFor {
     }
 
     protected void forTextToBe(WebElement element, String text){
-        EventHandler.writeToLogAndConsole("Wait for element text to be " + element.toString());
+        EventHandler.writeToLogAndConsole("Wait for element text to be " + text);
         getWait(TIMEOUT_30_SECONDS).until((driver) -> element.getText().equals(text));
     }
 
