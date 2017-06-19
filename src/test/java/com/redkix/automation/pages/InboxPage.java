@@ -62,7 +62,7 @@ public class InboxPage extends BasePage {
     }
 
     public InboxPage clickSettingsButton(){
-        waitForElementClickable(settingsButton);
+        waitForElementVisibility(settingsButton);
         settingsButton.click();
         return this;
     }

@@ -17,7 +17,6 @@ public class CreateMessageActions extends BaseAction {
                 .fillSubjectInput(subject)
                 .fillBodyInput(body)
                 .attachFileToMessage(ResourceHelper.TEXT_FILE_TO_ATTACH)
-                .checkFileIsAdded()
                 .removeAttachedFile()
                 .attachFileToMessage(ResourceHelper.GIF_FILE_TO_ATTACH)
                 .clickSendLetter();

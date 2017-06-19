@@ -28,5 +28,6 @@ public class LoginActions extends BaseAction {
         EventHandler.writeToLogAndConsoleBold("Log out from application");
         pages.getInboxPage().clickSettingsButton()
                 .clickLogoutButton();
+        pages.getLoginPage().waitForLoad();
     }
 }

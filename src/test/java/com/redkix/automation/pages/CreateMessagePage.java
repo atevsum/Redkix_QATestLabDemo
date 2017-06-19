@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -23,10 +22,10 @@ public class CreateMessagePage extends BasePage {
     private WebElement bodyInput;
     @FindBy (css = "input[type='file'][aria-label='Attach Files']")
     private List<WebElement> attachFileInput;
-    @FindBy (css = "button[ng-click='ctrl.attachment.remove()']")
+    @FindBy (css = "button.remove.ng-scope")
     private WebElement removeAttachedFileButton;
     @FindBy (css = "div.filename")
-    private List<WebElement> attachedFileName;
+    private List<WebElement> attachedFileNames;
     @FindBy (css = "div.attachments-padding-left.no-content")
     private WebElement noContentElement;
 
@@ -60,14 +59,14 @@ public class CreateMessagePage extends BasePage {
 
     public CreateMessagePage attachFileToMessage(String filename){
         attachFileInput.get(1).sendKeys(ResourceHelper.getResourcePath(filename));
-        waitForTextToBe(attachedFileName.get(0), filename);
+        waitForElementWithText(attachedFileNames, filename);
         return this;
     }
 
-    public CreateMessagePage checkFileIsAdded(){
-        Assert.assertEquals(attachedFileName.get(0).getText().trim(), ResourceHelper.TEXT_FILE_TO_ATTACH, "The file is not loaded!");
+/*    public CreateMessagePage checkFileIsAdded(){
+        Assert.assertEquals(attachedFileNames.get(0).getText().trim(), ResourceHelper.TEXT_FILE_TO_ATTACH, "The file is not loaded!");
         return this;
-    }
+    }*/
 
     public CreateMessagePage removeAttachedFile(){
         removeAttachedFileButton.click();
@@ -76,6 +75,7 @@ public class CreateMessagePage extends BasePage {
     }
 
     public CreateMessagePage clickSendLetter(){
+        waitForClassNotContains(sendButton, "btn-send-disabled");
         sendButton.click();
         waitForElementsAmount(overlayElementBy, 0);
         return this;

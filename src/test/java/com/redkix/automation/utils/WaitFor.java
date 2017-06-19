@@ -31,11 +31,6 @@ public class WaitFor {
         getWait(TIMEOUT_30_SECONDS).until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void forClickable(WebElement element){
-        EventHandler.writeToLogAndConsole("WaitFor for element to be clickable " + element.getTagName() + " " + element.getAttribute("name") + ":");
-        getWait(TIMEOUT_30_SECONDS).until(ExpectedConditions.elementToBeClickable(element));
-    }
-
     protected void forPresence(By locator){
         EventHandler.writeToLogAndConsole("Wait for element presence " + locator.toString());
         getWait(TIMEOUT_30_SECONDS).until(ExpectedConditions.presenceOfElementLocated(locator));
@@ -46,16 +41,21 @@ public class WaitFor {
         getWait(TIMEOUT_30_SECONDS).until(ExpectedConditions.numberOfElementsToBe(locator, amount));
     }
 
-    protected void forTextToBe(WebElement element, String text){
-        EventHandler.writeToLogAndConsole("Wait for element text to be " + text);
-        getWait(TIMEOUT_30_SECONDS).until((driver) -> element.getText().equals(text));
-    }
-
     protected void forElementWithText(List<WebElement> elements, By locatorInside, String subject){
         EventHandler.writeToLogAndConsole(String.format("Wait for element with text '%s' presence", subject));
         getWait(TIMEOUT_30_SECONDS).until((driver) -> {
             for (WebElement element : elements)
                 if (element.findElement(locatorInside).getText().equals(subject))
+                    return true;
+            return false;
+        });
+    }
+
+    protected void forElementWithText(List<WebElement> elements, String subject){
+        EventHandler.writeToLogAndConsole(String.format("Wait for element with text '%s' presence", subject));
+        getWait(TIMEOUT_30_SECONDS).until((driver) -> {
+            for (WebElement element : elements)
+                if (element.getText().equals(subject))
                     return true;
             return false;
         });

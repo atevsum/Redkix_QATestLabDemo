@@ -46,10 +46,6 @@ public class BasePage {
         wait.forVisibility(element);
     }
 
-    protected void waitForElementClickable(WebElement element){
-        wait.forClickable(element);
-    }
-
     protected void waitForElementPresence(By locator){
         wait.forPresence(locator);
     }
@@ -58,12 +54,12 @@ public class BasePage {
         wait.forElementsAmountBe(locator, amount);
     }
 
-    protected void waitForTextToBe(WebElement element, String text){
-        wait.forTextToBe(element, text);
-    }
-
     protected void waitForElementWithText(List<WebElement> elements, By locatorInside, String subject){
         wait.forElementWithText(elements, locatorInside, subject);
+    }
+
+    protected void waitForElementWithText(List<WebElement> elements, String subject){
+        wait.forElementWithText(elements, subject);
     }
 
     protected void waitForClassNotContains(WebElement element, String className){
