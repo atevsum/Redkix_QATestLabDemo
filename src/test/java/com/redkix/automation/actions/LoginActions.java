@@ -1,6 +1,6 @@
 package com.redkix.automation.actions;
 
-import com.redkix.automation.controls.PageCollection;
+import com.redkix.automation.pages.PageCollection;
 import com.redkix.automation.logging.EventHandler;
 import com.redkix.automation.utils.BaseAction;
 
@@ -10,8 +10,11 @@ public class LoginActions extends BaseAction {
     }
 
     public void loginInApp(String email, String password){
-        if(pages.getInboxPage().checkUserIsAlreadyLogin())
+        if(pages.getLoginPage().checkUserIsAlreadyLogin()) {
             logoutFromApp();
+/*            pages.getInboxPage().clickRefreshButton();
+            pages.getLoginPage().waitForLoad();*/
+        }
         loginIn(email, password);
     }
 
@@ -27,6 +30,5 @@ public class LoginActions extends BaseAction {
         EventHandler.writeToLogAndConsoleBold("Log out from application");
         pages.getInboxPage().clickSettingsButton()
                 .clickLogoutButton();
-        pages.getLoginPage().waitForLoad();
     }
 }

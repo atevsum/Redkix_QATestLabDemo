@@ -18,17 +18,22 @@ public class InboxPage extends BasePage {
     private List<WebElement> inboxMessages;
     @FindBy (id = "composeNewMail")
     private WebElement createMessageButton;
+    @FindBy (id = "getStartedWorkEmail")
+    private WebElement emailInput;
 
     @FindBy (css = "button[ng-click='settingsModal()']")
     private WebElement settingsButton;
+    @FindBy (css = "button[ng-click='refreshHandler()']")
+    private WebElement refreshButton;
     @FindBy (css = "button.rx-btn-red")
     private WebElement logoutButton;
 
     private By unreadMessageBy = By.cssSelector("span.rx-unread");
     private int indexOfLastMessage = 1;
 
-    public InboxPage(WebDriver driver){
+    InboxPage(WebDriver driver){
         super(driver);
+        turnOffAnimationJQuery();
     }
 
     public InboxPage clickMarkUnreadButton(){
@@ -48,7 +53,9 @@ public class InboxPage extends BasePage {
     }
 
     public InboxPage checkLetterIsRead(){
-        Assert.assertTrue(inboxMessages.get(indexOfLastMessage).findElements(unreadMessageBy).size() == 0, "Letter is not marked as Read!");
+        int amount = inboxMessages.get(indexOfLastMessage).findElements(unreadMessageBy).size();
+        System.out.println("ASSERT: " + amount);
+        Assert.assertTrue(amount == 0, "Letter is not marked as Read!");
         return this;
     }
 
@@ -60,24 +67,20 @@ public class InboxPage extends BasePage {
 
 
     public InboxPage clickSettingsButton(){
+        waitForElementClickable(settingsButton);
         settingsButton.click();
         return this;
     }
 
     public InboxPage clickLogoutButton(){
-        waitForElementVisibility(logoutButton);
+        waitForElementPresence(By.cssSelector("button.rx-btn-red"));
         logoutButton.click();
         return this;
     }
 
-    public boolean checkUserIsAlreadyLogin(){
-        try{
-            waitForElementVisibility(settingsButton);
-            EventHandler.writeToLogAndConsole("User is already logged in");
-            return true;
-        }
-        catch(TimeoutException ex){
-            return false;
-        }
+    public InboxPage clickRefreshButton(){
+        waitForElementClickable(refreshButton);
+        refreshButton.click();
+        return this;
     }
 }

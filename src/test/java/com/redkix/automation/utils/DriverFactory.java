@@ -15,12 +15,12 @@ public class DriverFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.setBinary(System.getProperty("user.home") + "/AppData/Local/Programs/Redkix/Redkix.exe");
                 options.addArguments("--start-maximized");
-                System.setProperty("webdriver.chrome.driver", getResourcePath("chromedriver.exe"));
+                System.setProperty("webdriver.chrome.driver", ResourceHelper.getResourcePath("chromedriver.exe"));
                 return new ChromeDriver(options);
         }
     }
 
-    private static String getResourcePath(String resourceName) {
+    /*private static String getResourcePath(String resourceName) {
         return new File(DriverFactory.class.getResource("/"+resourceName).getFile()).getAbsolutePath();
-    }
+    }*/
 }

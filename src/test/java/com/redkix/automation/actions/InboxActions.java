@@ -1,13 +1,12 @@
 package com.redkix.automation.actions;
 
-import com.redkix.automation.controls.PageCollection;
+import com.redkix.automation.pages.PageCollection;
 import com.redkix.automation.logging.EventHandler;
 import com.redkix.automation.utils.BaseAction;
 
 public class InboxActions extends BaseAction {
     public InboxActions(PageCollection pages){
         super(pages);
-        System.out.println("InboxActions is created!");
     }
 
     public void markMassageAsUnread(){

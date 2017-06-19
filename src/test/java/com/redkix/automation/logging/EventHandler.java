@@ -14,24 +14,16 @@ public class EventHandler implements WebDriverEventListener {
     public static boolean isForLogging = true;
 
     @Override
-    public void beforeAlertAccept(WebDriver webDriver) {
-
-    }
+    public void beforeAlertAccept(WebDriver webDriver) {    }
 
     @Override
-    public void afterAlertAccept(WebDriver webDriver) {
-
-    }
+    public void afterAlertAccept(WebDriver webDriver) {    }
 
     @Override
-    public void afterAlertDismiss(WebDriver webDriver) {
-
-    }
+    public void afterAlertDismiss(WebDriver webDriver) {    }
 
     @Override
-    public void beforeAlertDismiss(WebDriver webDriver) {
-
-    }
+    public void beforeAlertDismiss(WebDriver webDriver) {    }
 
     @Override
     public void beforeNavigateTo(String url, WebDriver driver) {
@@ -103,16 +95,6 @@ public class EventHandler implements WebDriverEventListener {
     public void afterChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
         writeToLogAndConsole("Changed value of " + webElement.getTagName() + " : " + webElement.getAttribute("value"));
     }
-
-/*    @Override
-    public void beforeChangeValueOf(WebElement element, WebDriver webDriver) {
-        writeToLogAndConsole("Change value of " + element.getTagName() + " " + element.getAttribute("id"));
-    }
-
-    @Override
-    public void afterChangeValueOf(WebElement element, WebDriver webDriver) {
-        writeToLogAndConsole("Changed value of " + element.getTagName() + " : " + element.getAttribute("value"));
-    }*/
 
     @Override
     public void beforeScript(String script, WebDriver driver) {

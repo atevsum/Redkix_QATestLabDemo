@@ -1,13 +1,11 @@
 package com.redkix.automation.utils;
 
-import com.redkix.automation.controls.ActionCollection;
-import com.redkix.automation.controls.PageCollection;
+import com.redkix.automation.actions.ActionCollection;
+import com.redkix.automation.pages.PageCollection;
 import com.redkix.automation.logging.EventHandler;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
-import java.util.Set;
 
 public class BaseTest {
     private EventFiringWebDriver driver;

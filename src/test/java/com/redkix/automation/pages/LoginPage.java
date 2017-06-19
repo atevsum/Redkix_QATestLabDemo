@@ -1,6 +1,9 @@
 package com.redkix.automation.pages;
 
+import com.redkix.automation.logging.EventHandler;
 import com.redkix.automation.utils.BasePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,9 +18,10 @@ public class LoginPage extends BasePage {
     @FindBy (id = "exchangeSignInButton")
     private WebElement signInButton;
 
-    public LoginPage(WebDriver driver) {
+    private By emailInputBy = By.id("getStartedWorkEmail");
+
+    LoginPage(WebDriver driver) {
         super(driver);
-        System.out.println("Create new login page");
     }
 
     public void waitForLoad(){
@@ -44,5 +48,16 @@ public class LoginPage extends BasePage {
     public LoginPage clickSignInButton(){
         signInButton.click();
         return this;
+    }
+
+    public boolean checkUserIsAlreadyLogin(){
+        try{
+            waitForElementPresence(emailInputBy);
+            return false;
+        }
+        catch(TimeoutException ex){
+            EventHandler.writeToLogAndConsole("User is already logged in");
+            return true;
+        }
     }
 }

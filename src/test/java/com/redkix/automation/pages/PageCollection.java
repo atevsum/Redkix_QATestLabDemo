@@ -1,4 +1,4 @@
-package com.redkix.automation.controls;
+package com.redkix.automation.pages;
 
 import com.redkix.automation.pages.CreateMessagePage;
 import com.redkix.automation.pages.InboxPage;

@@ -1,12 +1,10 @@
-package com.redkix.automation.controls;
+package com.redkix.automation.actions;
 
 import com.redkix.automation.actions.CreateMessageActions;
 import com.redkix.automation.actions.InboxActions;
 import com.redkix.automation.actions.LoginActions;
-import com.redkix.automation.pages.LoginPage;
+import com.redkix.automation.pages.PageCollection;
 import com.redkix.automation.utils.BaseAction;
-import com.redkix.automation.utils.BasePage;
-import org.openqa.selenium.WebDriver;
 
 import java.util.HashMap;
 import java.util.function.Supplier;
