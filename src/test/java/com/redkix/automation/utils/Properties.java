@@ -3,36 +3,32 @@ package com.redkix.automation.utils;
 import org.openqa.selenium.remote.BrowserType;
 
 public class Properties {
-        private static final String DEFAULT_BASE_URL = "https://demo.lawgeex.com";
-        private static final String DEFAULT_BROWSER = BrowserType.CHROME;
+    private static final String DEFAULT_BROWSER = BrowserType.CHROME;
 
-        private Properties() {}
-
-        public static String getBaseUrl() {
-            return System.getProperty(EnvironmentVariables.BASE_URL.toString(), DEFAULT_BASE_URL);
-        }
-
-        public static String getBrowser() {
-            return System.getProperty(EnvironmentVariables.BROWSER.toString(), DEFAULT_BROWSER);
-        }
-
-        public static String getReportDirectory() {
-            return System.clearProperty(EnvironmentVariables.REPORT_DIR.toString());
-        }
+    private Properties() {
     }
 
+    public static String getBrowser() {
+        return System.getProperty(EnvironmentVariables.BROWSER.toString(), DEFAULT_BROWSER);
+    }
+
+    public static String getReportDirectory() {
+        return System.clearProperty(EnvironmentVariables.REPORT_DIR.toString());
+    }
+}
+
 enum EnvironmentVariables {
-            BASE_URL("env.url"),
-            BROWSER("browser"),
-            REPORT_DIR("reportsDirectory");
+    BROWSER("browser"),
+    REPORT_DIR("reportsDirectory");
 
-private String value;
-        EnvironmentVariables(String value) {
+    private String value;
+
+    EnvironmentVariables(String value) {
         this.value = value;
-        }
+    }
 
-@Override
-public String toString() {
+    @Override
+    public String toString() {
         return value;
-        }
-        }
+    }
+}

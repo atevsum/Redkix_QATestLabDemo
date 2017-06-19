@@ -19,6 +19,7 @@ public class LoginPage extends BasePage {
     private WebElement signInButton;
 
     private By emailInputBy = By.id("getStartedWorkEmail");
+    private By settingButtonBy = By.cssSelector("button[ng-click='settingsModal()']");
 
     LoginPage(WebDriver driver) {
         super(driver);
@@ -51,13 +52,9 @@ public class LoginPage extends BasePage {
     }
 
     public boolean checkUserIsAlreadyLogin(){
-        try{
-            waitForElementPresence(emailInputBy);
+        WebElement element = waitForOneOfElementPresent(emailInputBy, settingButtonBy);
+        if(element.getTagName().equals("input"))
             return false;
-        }
-        catch(TimeoutException ex){
-            EventHandler.writeToLogAndConsole("User is already logged in");
-            return true;
-        }
+        else return true;
     }
 }

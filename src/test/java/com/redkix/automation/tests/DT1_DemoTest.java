@@ -17,10 +17,12 @@ public class DT1_DemoTest extends BaseTest {
         actions.getInboxActions().markMassageAsRead();
 
         Random rand = new Random();
-        String to = "littaint@gmail.com";
+        String to = "qatest6@redkix.com";
         String subject = "Functional" + rand.nextInt(100000);
         String body = "Types" +  + rand.nextInt(100000);
         actions.getCreateMessageActions().fillMessageDataAndSend(to, subject, body);
+
+        actions.getSentItemsActions().checkMessageIsSent(subject);
 
         actions.getLoginActions().logoutFromApp();
     }

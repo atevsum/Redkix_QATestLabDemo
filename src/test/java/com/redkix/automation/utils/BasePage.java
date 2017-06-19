@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class BasePage {
     protected WebDriver driver;
     private WaitFor wait;
@@ -35,6 +37,11 @@ public class BasePage {
         actions.build().perform();
     }
 
+    protected void clickByJS(WebElement element){
+        EventHandler.writeToLogAndConsole("Click on element:");
+        ((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+    }
+
     protected void waitForElementVisibility(WebElement element){
         wait.forVisibility(element);
     }
@@ -55,15 +62,15 @@ public class BasePage {
         wait.forTextToBe(element, text);
     }
 
-    protected void threadSleep(int miliseconds){
-        try {
-            Thread.sleep(miliseconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    protected void waitForElementWithText(List<WebElement> elements, By locatorInside, String subject){
+        wait.forElementWithText(elements, locatorInside, subject);
     }
 
-    protected void turnOffAnimationJQuery(){
-        ((JavascriptExecutor)driver).executeScript("$.fx.off = true;");
+    protected void waitForClassNotContains(WebElement element, String className){
+        wait.forClassNotContains(element, className);
+    }
+
+    protected WebElement waitForOneOfElementPresent(By locator1, By locator2){
+        return wait.forOneOfElementPresent(locator1, locator2);
     }
 }

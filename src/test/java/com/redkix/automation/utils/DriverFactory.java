@@ -19,8 +19,4 @@ public class DriverFactory {
                 return new ChromeDriver(options);
         }
     }
-
-    /*private static String getResourcePath(String resourceName) {
-        return new File(DriverFactory.class.getResource("/"+resourceName).getFile()).getAbsolutePath();
-    }*/
 }

@@ -1,9 +1,7 @@
 package com.redkix.automation.pages;
 
-import com.redkix.automation.logging.EventHandler;
 import com.redkix.automation.utils.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,24 +14,22 @@ public class InboxPage extends BasePage {
     private WebElement markUnreadButton;
     @FindBy (css = "#previewsContent div[role='button'].ng-scope")
     private List<WebElement> inboxMessages;
+    @FindBy (css = "#previewsContent div[role='button'].ng-scope div.rx-preview-details span:nth-child(1).ng-scope")
+    private List<WebElement> inboxMessagesSubjects;
     @FindBy (id = "composeNewMail")
     private WebElement createMessageButton;
-    @FindBy (id = "getStartedWorkEmail")
-    private WebElement emailInput;
 
     @FindBy (css = "button[ng-click='settingsModal()']")
     private WebElement settingsButton;
-    @FindBy (css = "button[ng-click='refreshHandler()']")
-    private WebElement refreshButton;
-    @FindBy (css = "button.rx-btn-red")
-    private WebElement logoutButton;
+    @FindBy (css = "div.button-bar button")
+    private List<WebElement> buttonsOnSettingsModal;
 
-    private By unreadMessageBy = By.cssSelector("span.rx-unread");
+    private By logoutButtonBy = By.cssSelector("button.rx-btn-red");
+    private By unreadMessageByPartial = By.cssSelector("span.rx-unread");
     private int indexOfLastMessage = 1;
 
     InboxPage(WebDriver driver){
         super(driver);
-        turnOffAnimationJQuery();
     }
 
     public InboxPage clickMarkUnreadButton(){
@@ -43,18 +39,18 @@ public class InboxPage extends BasePage {
     }
 
     public InboxPage checkLetterIsUnread(){
-        Assert.assertTrue(inboxMessages.get(indexOfLastMessage).findElements(unreadMessageBy).size() > 0, "Letter is not marked as unread!");
+        Assert.assertTrue(inboxMessages.get(indexOfLastMessage).findElements(unreadMessageByPartial).size() > 0, "Letter is not marked as unread!");
         return this;
     }
 
     public InboxPage clickMarkRead(){
-        inboxMessages.get(indexOfLastMessage).click();
+        clickByActions(inboxMessages.get(indexOfLastMessage));
         return this;
     }
 
     public InboxPage checkLetterIsRead(){
-        int amount = inboxMessages.get(indexOfLastMessage).findElements(unreadMessageBy).size();
-        System.out.println("ASSERT: " + amount);
+        waitForClassNotContains(inboxMessagesSubjects.get(indexOfLastMessage), "rx-unread");
+        int amount = inboxMessages.get(indexOfLastMessage).findElements(unreadMessageByPartial).size();
         Assert.assertTrue(amount == 0, "Letter is not marked as Read!");
         return this;
     }
@@ -64,8 +60,6 @@ public class InboxPage extends BasePage {
         return this;
     }
 
-
-
     public InboxPage clickSettingsButton(){
         waitForElementClickable(settingsButton);
         settingsButton.click();
@@ -73,14 +67,8 @@ public class InboxPage extends BasePage {
     }
 
     public InboxPage clickLogoutButton(){
-        waitForElementPresence(By.cssSelector("button.rx-btn-red"));
-        logoutButton.click();
-        return this;
-    }
-
-    public InboxPage clickRefreshButton(){
-        waitForElementClickable(refreshButton);
-        refreshButton.click();
+        waitForElementPresence(logoutButtonBy);
+        buttonsOnSettingsModal.get(1).click();
         return this;
     }
 }

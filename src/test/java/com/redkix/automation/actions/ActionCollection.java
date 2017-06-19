@@ -34,6 +34,9 @@ public class ActionCollection {
     public CreateMessageActions getCreateMessageActions(){
         return getAction("CreateMessageActions", () -> new CreateMessageActions(pageCollection));
     }
+    public SentItemsActions getSentItemsActions(){
+        return getAction("SentItemsActions", () -> new SentItemsActions(pageCollection));
+    }
 
     public void clearActionCollection(){
         actionCollection.clear();

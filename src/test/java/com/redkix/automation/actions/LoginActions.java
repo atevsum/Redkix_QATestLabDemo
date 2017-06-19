@@ -12,8 +12,6 @@ public class LoginActions extends BaseAction {
     public void loginInApp(String email, String password){
         if(pages.getLoginPage().checkUserIsAlreadyLogin()) {
             logoutFromApp();
-/*            pages.getInboxPage().clickRefreshButton();
-            pages.getLoginPage().waitForLoad();*/
         }
         loginIn(email, password);
     }

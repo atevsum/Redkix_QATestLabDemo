@@ -33,6 +33,9 @@ public class PageCollection {
     public CreateMessagePage getCreateMessagePage(){
         return getPage("CreateMessagePage", () -> new CreateMessagePage(driver));
     }
+    public SentItemsPage getSentItemsPage(){
+        return getPage("SentItemsPage", () -> new SentItemsPage(driver));
+    }
 
     public void clearPageCollection(){
         pageCollection.clear();
