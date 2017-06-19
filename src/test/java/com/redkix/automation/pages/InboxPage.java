@@ -23,6 +23,8 @@ public class InboxPage extends BasePage {
     private WebElement settingsButton;
     @FindBy (css = "div.button-bar button")
     private List<WebElement> buttonsOnSettingsModal;
+    @FindBy (css = "button.rx-btn-red")
+    private WebElement logoutButton;
 
     private By logoutButtonBy = By.cssSelector("button.rx-btn-red");
     private By unreadMessageByPartial = By.cssSelector("span.rx-unread");
@@ -69,7 +71,7 @@ public class InboxPage extends BasePage {
 
     public InboxPage clickLogoutButton(){
         waitForElementPresence(logoutButtonBy);
-        buttonsOnSettingsModal.get(1).click();
+        logoutButton.click();
         return this;
     }
 }
