@@ -34,6 +34,10 @@ public class InboxPage extends BasePage {
         super(driver);
     }
 
+    public void waitForLoad(){
+        waitForElementVisibility(markUnreadButton);
+    }
+
     public InboxPage clickMarkUnreadButton(){
         waitForElementVisibility(markUnreadButton);
         markUnreadButton.click();

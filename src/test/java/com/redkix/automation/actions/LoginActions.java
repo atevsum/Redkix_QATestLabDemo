@@ -22,6 +22,7 @@ public class LoginActions extends BaseAction {
                     .clickGetStartedButton()
                     .fillPasswordInput(password)
                     .clickSignInButton();
+        pages.getInboxPage().waitForLoad();
     }
 
     public void logoutFromApp(){
