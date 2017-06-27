@@ -39,7 +39,7 @@ public class InboxPage extends BasePage {
     }
 
     public InboxPage clickMarkUnreadButton(){
-        markUnreadButton.get(1).click();
+        markUnreadButton.get(markUnreadButton.size()-1).click();
         return this;
     }
 
