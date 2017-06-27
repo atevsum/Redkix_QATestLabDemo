@@ -14,7 +14,7 @@ public class DT1_DemoTest extends BaseTest {
         actions.getLoginActions().loginInApp(email, password);
 
         actions.getInboxActions().markMassageAsUnread();
-        actions.getInboxActions().markMassageAsRead();
+        //actions.getInboxActions().markMassageAsRead();
 
         Random rand = new Random();
         String to = "qatest6@redkix.com";

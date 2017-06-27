@@ -9,6 +9,7 @@ public class ResourceHelper {
     private ResourceHelper() {}
 
     public static String getResourcePath(String resourceName) {
-        return new File(ResourceHelper.class.getResource("/"+resourceName).getFile()).getAbsolutePath();
+        //return new File(ResourceHelper.class.getResource("/"+resourceName).getFile()).getAbsolutePath();
+        return System.getProperty("user.dir") + "/src/test/resources/" + resourceName;
     }
 }

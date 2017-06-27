@@ -10,8 +10,8 @@ import org.testng.Assert;
 import java.util.List;
 
 public class InboxPage extends BasePage {
-    @FindBy (css = "md-content #markLastMessageAsUnreadButton")
-    private WebElement markUnreadButton;
+    @FindBy (css = "#conversationPane #markLastMessageAsUnreadButton")
+    private List<WebElement> markUnreadButton;
     @FindBy (css = "#previewsContent div[role='button'].ng-scope")
     private List<WebElement> inboxMessages;
     @FindBy (css = "#previewsContent div[role='button'].ng-scope div.rx-preview-details span:nth-child(1).ng-scope")
@@ -35,12 +35,11 @@ public class InboxPage extends BasePage {
     }
 
     public void waitForLoad(){
-        waitForElementVisibility(markUnreadButton);
+        waitForElementPresence(By.cssSelector("#conversationPane #markLastMessageAsUnreadButton"));
     }
 
     public InboxPage clickMarkUnreadButton(){
-        waitForElementVisibility(markUnreadButton);
-        markUnreadButton.click();
+        markUnreadButton.get(1).click();
         return this;
     }
 
