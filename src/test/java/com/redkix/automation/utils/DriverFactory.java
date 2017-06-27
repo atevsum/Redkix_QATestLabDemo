@@ -15,7 +15,8 @@ public class DriverFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.setBinary(System.getProperty("user.home") + "/AppData/Local/Programs/Redkix/Redkix.exe");
                 options.addArguments("--start-maximized");
-                System.setProperty("webdriver.chrome.driver", ResourceHelper.getResourcePath("chromedriver.exe"));
+                String executableName = OSValidator.isWindows() ? "chromedriver.exe" : "chromedriver";
+                System.setProperty("webdriver.chrome.driver",ResourceHelper.getResourcePath(executableName));
                 return new ChromeDriver(options);
         }
     }
